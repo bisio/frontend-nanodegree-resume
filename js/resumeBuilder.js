@@ -2,20 +2,34 @@
 /*var AwesomeThougths = "I am Bisio and i am awesome!";*/
 /*var funThoughts = AwesomeThougths.replace("awesome","fun");*/
 /*$("#main").append(funThoughts);*/
-var formattedName = HTMLheaderName.replace("%data%","Andrea Bisognin")
-var formattedRole = HTMLheaderRole.replace("%data%","developer");
+
+var skills = ["awesomeness","programming","teaching","JS"];
+/*$("#main").append(skills);*/
+
+var bio = {
+  "name":"Bisio",
+  "role":"developer",
+  "contact_info":"andrea.bisogin@gmail.com",
+  "pictureUrl":"http://goo.gl",
+  "welcomeMessage":"hi",
+  "skills":skills,
+};
+
+var formattedName = HTMLheaderName.replace("%data%",bio.name)
+var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
 
-var skills = ["awesomeness","programming","teaching","JS"];
-$("#main").append(skills);
+$("#header").append(HTMLcontactGeneric.replace("%contact%","email").replace("%data%",bio.contact_info));
 
-var bio = {
-  "name":"James",
-  "age":32,
-  "skills":skills
-};
+if (bio.skills) {
 
+  $("#header").append(HTMLskillsStart);
+  var skillsElements = skills.map(function(skill){
+    return(HTMLskills.replace("%data%",skill))
+  });
+  $("#skills").append(skillsElements);
+}
 /*var name = "audacity";*/
 /*name =  name.slice(1);*/
 /*name = name.replace('u','U');*/
